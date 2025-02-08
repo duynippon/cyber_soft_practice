@@ -1,27 +1,27 @@
 from pprint import pprint
 
 
-def list_dict(start, target):
-    lst = []
+class HomeworkBuoi5:
+    def __init__(self, start, target):
+        self.start = start
+        self.target = target
 
-    if start == target:
+    def list_dict(self, start, target):
+        if start == target:
+            return []
+        else:
+            return [{"id": start, "value": self.list_dict(start + 1, target)}]
 
-        return []
-    else:
-        lst.append({"id": start, "value": list_dict(start + 1, target)})
-
-    return lst
-
-
-def after(start, target):
-    lst = list_dict(start, target)
-    lst.append({"id": target, "value": []})
-    return lst
+    @property
+    def after(self):
+        lst = self.list_dict(self.start, self.target)
+        lst.append({"id": self.target, "value": []})
+        return lst
 
 
 start = 1
 target = 5
-demo = after(start, target)
+demo = HomeworkBuoi5(start, target)
 
 
-pprint(demo)
+pprint(demo.after)
